@@ -6,7 +6,7 @@ class UtEvents::Scraper
     html = open(BASE_URL)
     doc = Nokogiri::HTML(html)
     item_content = doc.css(".item_content_medium")
-    events = []
+    daily_events = []
     item_content.each do |item|
       name_of_event = item.css(".heading h3.summary").css("a").text
       description_of_event = item.css("h4.description").text
@@ -15,7 +15,10 @@ class UtEvents::Scraper
       event_affiliations =  []
       item.css(".event_filters").css("a").each do |filter|
         event_affiliations << filter.text
+      Event.new(name_of_event, description_of_event, event_location, event_affiliations)
       end
-      events << {name: name_of_event, description: description_of_event, location: event_location, link: event_link, affiliations: event_affiliations}
+      daily_events << {name: name_of_event, description: description_of_event, location: event_location, link: event_link, affiliations: event_affiliations}
+
     end
+    daily_events
   end

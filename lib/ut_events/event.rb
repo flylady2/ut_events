@@ -12,4 +12,8 @@ class UtEvents::Events
   def self.all
     @@all
   end
+
+  #def create_from_array(UtEvents::Scraper.daily_events)
+
+
 end
