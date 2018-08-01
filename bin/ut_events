@@ -1,0 +1,5 @@
+#!/usr/local/bin ruby
+
+require_relative '../lib/ut_events'
+
+UtEvents::CLI.new.start
