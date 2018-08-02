@@ -1,5 +1,5 @@
 class UtEvents::Events
-  attr_accessor :name, :brief_description, :location, :affiliations
+  attr_accessor :name, :description, :location, :event_link, :affiliations, :extended_description
   @@all = []
 
   def initialize(event_hash)

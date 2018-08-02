@@ -15,10 +15,9 @@ class UtEvents::Scraper
       event_affiliations =  []
       item.css(".event_filters").css("a").each do |filter|
         event_affiliations << filter.text
-      Event.new(name_of_event, description_of_event, event_location, event_affiliations)
       end
-      daily_events << {name: name_of_event, description: description_of_event, location: event_location, link: event_link, affiliations: event_affiliations}
-
+      daily_events << {name: name_of_event, description: description_of_event, location: event_location, event_link: event_link, affiliations: event_affiliations}
     end
     daily_events
   end
+end
