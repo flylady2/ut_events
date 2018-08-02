@@ -8,11 +8,14 @@ class UtEvents::CLI
   def start
     puts "Welcome to UT Daily Events"
     daily_events = UtEvents::Scraper.scrape_events
-    binding.pry
+    #binding.pry
     UtEvents::Event.create_from_array(daily_events)
+    #binding.pry
     puts "These are the events that are happening today"
+    UtEvents::Event.all
+    #binding.pry
     #displays a numbered list of events by name
-    daily_events.each.with_index(1) do |event, index|
+    UtEvents::Event.all.each.with_index(1) do |event, index|
       #binding.pry
       puts "#{index}. #{event.name}"
     end
