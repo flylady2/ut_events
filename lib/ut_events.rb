@@ -1,4 +1,4 @@
-require "ut_events/version"
+
 
 module UtEvents
   # Your code goes here...
@@ -10,4 +10,4 @@ require 'pry'
 require_relative "./ut_events/version"
 require_relative "./ut_events/cli"
 require_relative "./ut_events/scraper"
-require_relative ".ut_events/event"
+require_relative "./ut_events/event"
