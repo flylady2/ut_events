@@ -1,4 +1,5 @@
 class UtEvents::Scraper
+  
 
   BASE_URL = "https://calendar.utexas.edu/calendar"
 
@@ -19,5 +20,6 @@ class UtEvents::Scraper
       daily_events << {name: name_of_event, description: description_of_event, location: event_location, event_link: event_link, affiliations: event_affiliations}
     end
     daily_events
+
   end
 end
