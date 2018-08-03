@@ -24,6 +24,7 @@ class UtEvents::CLI
 
   def main_menu
     puts "To view additional details about a particular event, type in its number from the list."
+
     input = gets.strip
     index = input.to_i - 1
     #identifies event within Event.all array and shows its attributes
@@ -35,35 +36,40 @@ class UtEvents::CLI
     puts "url: #{chosen_event.event_link}"
     puts ""
     puts "Would you like to see a more detailed description of this event? (Y/n)"
-    #{}puts "To quit, type exit"
-    #{}puts "To see a "
+
     next_input = gets.strip
     if next_input == "Y"
-
-      puts UtEvents::Scraper.single_event_scrape(event)
-
-      #puts "#{event.long_description}"
+      #scrapes page of chosen_event and displays longer description
+      puts UtEvents::Scraper.single_event_scrape(chosen_event)
+      category_menu
     else
-      puts "To quit UT Daily Events, type 'exit'"
+      category_menu
     end
+  end
+
+  def category_menu
     puts "Would you like to see a list of events belonging to one of these categories?"
     puts "A. Research Opportunities & Studies"
     puts "B. Health & Wellness"
     puts "C. Campus & Community"
-    puts "If so, enter the letter corresponding to the category"
+    puts "If so, enter the letter corresponding to the category:"
+    puts "Type 'start' to start over"
+    puts "Or type 'exit' to end the program."
     last_input = gets.strip
     case last_input
     when "A"
       UtEvents::Event.find_by_category("Research Opportunities & Studies")
-
     when "B"
       UtEvents::Event.find_by_category("Health & Wellness")
     when "C"
       UtEvents::Event.find_by_category("Campus & Community")
+    when "start"
+      start
+    when 'exit'
+      puts "Goodbye y'all!"
     end
-
-
   end
+
 
     # if value.class == Array
       #  puts" #{key.capitalize}: #{value.join(', ')}"
