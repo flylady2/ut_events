@@ -20,7 +20,7 @@ class UtEvents::Event
 
   def self.find_by_category(category)
     selected_events = []
-    UtEvents::Event.all.collect do |object|
+    UtEvents::Event.all.each do |object|
       if object.affiliations.include?(category)
         selected_events << object
       end
