@@ -42,19 +42,22 @@ class UtEvents::CLI
     puts "To view additional details about a particular event, type in its number from the list."
     input = gets.strip
     index = input.to_i - 1
-
-    puts "Name: #{UtEvents::Event.all[index].name}"
-    puts "Location: #{UtEvents::Event.all[index].location}"
-    puts "Brief description: #{UtEvents::Event.all[index].description}"
-    puts "Affilations: #{UtEvents::Event.all[index].affiliations.join(', ')}"
-    puts "url: #{UtEvents::Event.all[index].event_link}"
+    event = UtEvents::Event.all[index]
+    puts "Name: #{event.name}"
+    puts "Location: #{event.location}"
+    puts "Brief description: #{event.description}"
+    puts "Affilations: #{event.affiliations.join(', ')}"
+    puts "url: #{event.event_link}"
 
     puts "Would you like to see a more detailed description of this event? (Y/n)"
     #{}puts "To quit, type exit"
     #{}puts "To see a "
     next_input = gets.strip
     if next_input == "Y"
-      UtEvents::Scraper.single_event_scrape("#{UtEvents::Event.all[index].event_link}")
+
+      puts UtEvents::Scraper.single_event_scrape(event)
+
+      #puts "#{event.long_description}"
     else
       puts "To quit UT Daily Events, type 'exit'"
     end

@@ -23,10 +23,15 @@ class UtEvents::Scraper
 
   end
 
-  def self.single_event_scrape()
-    specific_html = open("specific_url")
-    specific_doc = Nokogiri::HTML(specific_html)
-    specific_description = specific_doc.css("description p").text
-    specific_description
+  def self.single_event_scrape(event)
+
+    url = "#{event.event_link}"
+
+
+    event_doc = Nokogiri::HTML(open(url))
+    #binding.pry
+    long_description = event_doc.css(".description p").text
+    
+    long_description
   end
 end
