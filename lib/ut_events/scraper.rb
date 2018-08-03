@@ -1,5 +1,5 @@
 class UtEvents::Scraper
-  
+
 
   BASE_URL = "https://calendar.utexas.edu/calendar"
 
@@ -21,5 +21,12 @@ class UtEvents::Scraper
     end
     daily_events
 
+  end
+
+  def self.single_event_scrape()
+    specific_html = open("specific_url")
+    specific_doc = Nokogiri::HTML(specific_html)
+    specific_description = specific_doc.css("description p").text
+    specific_description
   end
 end

@@ -43,14 +43,31 @@ class UtEvents::CLI
     input = gets.strip
     index = input.to_i - 1
 
-    UtEvents::Event.all[index].each_pair {|key, value|
-      if value.class == Array
-        puts" #{key.capitalize}: #{value.join(', ')}"
-      else
-        puts "#{key.capitalize}: #{value}"
-      end
-    }
+    puts "Name: #{UtEvents::Event.all[index].name}"
+    puts "Location: #{UtEvents::Event.all[index].location}"
+    puts "Brief description: #{UtEvents::Event.all[index].description}"
+    puts "Affilations: #{UtEvents::Event.all[index].affiliations.join(', ')}"
+    puts "url: #{UtEvents::Event.all[index].event_link}"
+
+    puts "Would you like to see a more detailed description of this event? (Y/n)"
+    #{}puts "To quit, type exit"
+    #{}puts "To see a "
+    next_input = gets.strip
+    if next_input == "Y"
+      UtEvents::Scraper.single_event_scrape("#{UtEvents::Event.all[index].event_link}")
+    else
+      puts "To quit UT Daily Events, type 'exit'"
     end
+
+  end
+
+    # if value.class == Array
+      #  puts" #{key.capitalize}: #{value.join(', ')}"
+    #  else
+      #  puts "#{key.capitalize}: #{value}"
+    #  end
+  #  }
+  #  end
 
     #iterate through Event.all and puts detail about a single event.
 
