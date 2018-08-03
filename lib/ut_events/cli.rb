@@ -69,7 +69,7 @@ class UtEvents::CLI
     last_input = gets.strip
     case last_input
     when "A"
-      puts UtEvents::Event.find_by_category("Research Opportunities & Studies")
+      UtEvents::Event.find_by_category("Research Opportunities & Studies")
 
     when "B"
       puts UtEvents::Event.find_by_category("Health & Wellness")
@@ -90,7 +90,7 @@ class UtEvents::CLI
 
     #iterate through Event.all and puts detail about a single event.
 
-    
+
 
     #method for searching Events.all by affiliations.
     #puts returned events
