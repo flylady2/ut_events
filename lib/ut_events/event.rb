@@ -25,15 +25,21 @@ class UtEvents::Event
     UtEvents::Scraper.scrape_events.each do |item|
 
       item.each do |key, value|
-        #binding.pry
+        binding.pry
         if key == :affiliations && value.class == Array && value.include?(category)
           selected_events << item
         end
       end
     end
     selected_events
-    
+
   end
+
+  # UtEvents::Event.all.collect do |object|
+  #   if object.affiliations.include?(category)
+  # =>  object
+  # => end
+  # end
 
 
 end
