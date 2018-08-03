@@ -31,9 +31,8 @@ class UtEvents::Event
         end
       end
     end
-
-
     selected_events
+    
   end
 
 

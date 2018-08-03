@@ -72,9 +72,9 @@ class UtEvents::CLI
       puts UtEvents::Event.find_by_category("Research Opportunities & Studies")
 
     when "B"
-      puts UtEvents::Event.find_by_category(Health & Wellness)
+      puts UtEvents::Event.find_by_category("Health & Wellness")
     when "C"
-      puts UtEvents::Event.find_by_category(Campus & Community)
+      puts UtEvents::Event.find_by_category("Campus & Community")
     end
 
 
@@ -90,12 +90,7 @@ class UtEvents::CLI
 
     #iterate through Event.all and puts detail about a single event.
 
-    puts "To see a more complete description of the event, enter "#{???}"
-
-    puts "To search for events related to these campus programs, enter the letter corresponding to the program."
-    puts "A whatever"
-    puts "B whatever"
-    puts "C whatever"
+    
 
     #method for searching Events.all by affiliations.
     #puts returned events
