@@ -61,6 +61,22 @@ class UtEvents::CLI
     else
       puts "To quit UT Daily Events, type 'exit'"
     end
+    puts "Would you like to see a list of events belonging to one of these categories?"
+    puts "A. Research Opportunities & Studies"
+    puts "B. Health & Wellness"
+    puts "C. Campus & Community"
+    puts "If so, enter the letter corresponding to the category"
+    last_input = gets.strip
+    case last_input
+    when "A"
+      puts UtEvents::Event.find_by_category("Research Opportunities & Studies")
+
+    when "B"
+      puts UtEvents::Event.find_by_category(Health & Wellness)
+    when "C"
+      puts UtEvents::Event.find_by_category(Campus & Community)
+    end
+
 
   end
 

@@ -18,5 +18,23 @@ class UtEvents::Event
     end
   end
 
+  def self.find_by_category(category)
+    #UtEvents::Event.all
+    #binding.pry
+    selected_events = []
+    UtEvents::Scraper.scrape_events.each do |item|
+
+      item.each do |key, value|
+        #binding.pry
+        if key == :affiliations && value.class == Array && value.include?(category)
+          selected_events << item
+        end
+      end
+    end
+
+
+    selected_events
+  end
+
 
 end
