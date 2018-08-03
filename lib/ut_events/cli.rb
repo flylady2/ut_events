@@ -42,6 +42,16 @@ class UtEvents::CLI
     puts "To view additional details about a particular event, type in its number from the list."
     input = gets.strip
     index = input.to_i - 1
+
+    UtEvents::Event.all[index].each_pair {|key, value|
+      if value.class == Array
+        puts" #{key.capitalize}: #{value.join(', ')}"
+      else
+        puts "#{key.capitalize}: #{value}"
+      end
+    }
+    end
+
     #iterate through Event.all and puts detail about a single event.
 
     puts "To see a more complete description of the event, enter "#{???}"
@@ -54,6 +64,6 @@ class UtEvents::CLI
     #method for searching Events.all by affiliations.
     #puts returned events
     #need exit case
-  end
+
 
 end
