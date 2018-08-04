@@ -60,11 +60,17 @@ class UtEvents::CLI
     last_input = gets.strip
     case last_input
     when "A"
-      UtEvents::Event.find_by_category("Research Opportunities & Studies")
+      UtEvents::Event.find_by_category("Research Opportunities & Studies").each do |event| #iterates through the new array to print out the event names
+        puts "#{event.name}"
+          end
     when "B"
-      UtEvents::Event.find_by_category("Health & Wellness")
+      UtEvents::Event.find_by_category("Health & Wellness").each do |event|
+        puts "#{event.name}"
+      end
     when "C"
-      UtEvents::Event.find_by_category("Campus & Community")
+      UtEvents::Event.find_by_category("Campus & Community").each do |event|
+        puts "#{event.name}"
+      end
     when "start"
       display_menu
     when 'exit'

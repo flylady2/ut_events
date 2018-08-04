@@ -19,19 +19,23 @@ class UtEvents::Event
   end
 
   def self.find_by_category(category) #iterates through the Event.all array to select events in the desired category
-    selected_events = []
-    UtEvents::Event.all.each do |object|
-      if object.affiliations.include?(category)
-        selected_events << object #puts the selected events into a new array
-      end
-    end
-    selected_events.each do |event| #iterates through the new array to print out the event names
-      puts "#{event.name}"
-    end
+    #selected_events = []
+    UtEvents::Event.all.select {|object|
+      object.affiliations.include?(category)}
 
-    def self.destroy_all
-      @@all.clear
-    end
+
+        #selected_events << object #puts the selected events into a new array
+    
+    #binding.pry
+
+    #end
+    #selected_events.each do |event| #iterates through the new array to print out the event names
+      #puts "#{event.name}"
+  end
+
+    #def self.destroy_all
+    #  @@all.clear
+    #end
   #  UtEvents::Scraper.scrape_events.each do |item|
 
     #  item.each do |key, value|
@@ -43,7 +47,7 @@ class UtEvents::Event
     #end
     #selected_events
 
-  end
+
 
   # UtEvents::Event.all.collect do |object|
   #   if object.affiliations.include?(category)
