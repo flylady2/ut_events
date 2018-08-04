@@ -3,7 +3,6 @@ class UtEvents::CLI
   def start
     puts "Welcome to UT Daily Events"
     #scraping data from UT calendar
-    #daily_events = UtEvents::Scraper.scrape_events
     #creating Event objects from scraped data
     UtEvents::Event.create_from_array(UtEvents::Scraper.scrape_events)
     #displays a numbered list of events by name
@@ -22,8 +21,13 @@ class UtEvents::CLI
 
   def main_menu
     puts "To view additional details about a particular event, type in its number from the list."
-    input = gets.strip
-    index = input.to_i - 1
+    puts "Or type 'exit' to quit the program."
+    user_input = ""
+    user_input = gets.strip
+    if user_input == 'exit'
+      early_exit
+    end
+    index = user_input.to_i - 1
     if index.between?(0, UtEvents::Event.all.size - 1)
     #identifies event within Event.all array and shows its attributes
       chosen_event = UtEvents::Event.all[index]
@@ -55,10 +59,9 @@ class UtEvents::CLI
     puts "A. Research Opportunities & Studies"
     puts "B. Health & Wellness"
     puts "C. Campus & Community"
-    puts "If so, enter the letter corresponding to the category:"
-    puts ""
-    puts "To start over, type 'start'"
-    puts "Or type 'exit' to end the program."
+    puts "If so, enter the letter corresponding to the category."
+    puts "To see all the events again, type 'again'"
+    puts "Or type 'done' to end the program."
     puts ""
     last_input = gets.strip.downcase
     case last_input
@@ -74,9 +77,9 @@ class UtEvents::CLI
       UtEvents::Event.find_by_category("Campus & Community").each do |event|
         puts "#{event.name}"
       end
-    when "start"
+    when "again"
       display_menu
-    when 'exit'
+    when 'done'
       puts "Goodbye y'all!"
     end
   end

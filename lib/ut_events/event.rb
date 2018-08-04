@@ -3,7 +3,7 @@ class UtEvents::Event
 
   @@all = []
 
-  def initialize(event_hash)
+  def initialize(event_hash) #instantiates a new Event object with attributes from an event hash from a single event
     event_hash.each {|key, value| self.send(("#{key}="), value)}
     @@all << self
   end
@@ -12,48 +12,25 @@ class UtEvents::Event
     @@all
   end
 
-  def self.create_from_array(events_array) #instantiates an Event object from each hash in the array
+  def self.create_from_array(events_array) #iterates through an array of hashes
     events_array.each do |event_hash|
-      UtEvents::Event.new(event_hash)
+      UtEvents::Event.new(event_hash) #calls Event.new to create an Event object from each hash
     end
   end
 
   def self.find_by_category(category) #iterates through the Event.all array to select events in the desired category
-    #selected_events = []
     UtEvents::Event.all.select {|object|
       object.affiliations.include?(category)}
-
-
-        #selected_events << object #puts the selected events into a new array
-    
-    #binding.pry
-
-    #end
-    #selected_events.each do |event| #iterates through the new array to print out the event names
-      #puts "#{event.name}"
   end
+
+
 
     #def self.destroy_all
     #  @@all.clear
     #end
-  #  UtEvents::Scraper.scrape_events.each do |item|
-
-    #  item.each do |key, value|
-    #    binding.pry
-    #    if key == :affiliations && value.class == Array && value.include?(category)
-    #      selected_events << item
-    #    end
-    #  end
-    #end
-    #selected_events
 
 
 
-  # UtEvents::Event.all.collect do |object|
-  #   if object.affiliations.include?(category)
-  # =>  object
-  # => end
-  # end
 
 
 end
