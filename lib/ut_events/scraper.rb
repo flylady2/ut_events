@@ -17,10 +17,10 @@ class UtEvents::Scraper
       item.css(".event_filters").css("a").each do |filter|
         event_affiliations << filter.text
       end
+      #creating a hash of each event and it into the daily_events array
       daily_events << {name: name_of_event, description: description_of_event, location: event_location, event_link: event_link, affiliations: event_affiliations}
     end
     daily_events
-
   end
 
   def self.single_event_scrape(chosen_event)

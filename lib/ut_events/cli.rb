@@ -1,10 +1,5 @@
 class UtEvents::CLI
 
-  attr_accessor :daily_events
-
-  def initialize
-  end
-
   def start
     puts "Welcome to UT Daily Events"
     #scraping data from UT calendar
@@ -13,10 +8,9 @@ class UtEvents::CLI
     UtEvents::Event.create_from_array(daily_events)
     #displays a numbered list of events by name
     puts "These are the events that are happening today:"
-
+    puts ""
     UtEvents::Event.all.each.with_index(1) do |event, index|
       puts "#{index}. #{event.name}"
-
     end
     puts ""
     main_menu
@@ -41,6 +35,7 @@ class UtEvents::CLI
     if next_input == "Y"
       #scrapes page of chosen_event and displays longer description
       puts UtEvents::Scraper.single_event_scrape(chosen_event)
+      #binding.pry
       category_menu
     else
       category_menu
@@ -64,28 +59,11 @@ class UtEvents::CLI
     when "C"
       UtEvents::Event.find_by_category("Campus & Community")
     when "start"
+      UtEvents::Event.all.clear
       start
     when 'exit'
       puts "Goodbye y'all!"
     end
   end
-
-
-    # if value.class == Array
-      #  puts" #{key.capitalize}: #{value.join(', ')}"
-    #  else
-      #  puts "#{key.capitalize}: #{value}"
-    #  end
-  #  }
-  #  end
-
-    #iterate through Event.all and puts detail about a single event.
-
-
-
-    #method for searching Events.all by affiliations.
-    #puts returned events
-    #need exit case
-
 
 end
