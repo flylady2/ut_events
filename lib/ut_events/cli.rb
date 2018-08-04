@@ -7,6 +7,10 @@ class UtEvents::CLI
     #creating Event objects from scraped data
     UtEvents::Event.create_from_array(daily_events)
     #displays a numbered list of events by name
+    display_menu
+  end
+
+  def display_menu
     puts "These are the events that are happening today:"
     puts ""
     UtEvents::Event.all.each.with_index(1) do |event, index|
@@ -43,13 +47,16 @@ class UtEvents::CLI
   end
 
   def category_menu
+    puts ""
     puts "Would you like to see a list of events belonging to one of these categories?"
     puts "A. Research Opportunities & Studies"
     puts "B. Health & Wellness"
     puts "C. Campus & Community"
     puts "If so, enter the letter corresponding to the category:"
-    puts "Type 'start' to start over"
+    puts ""
+    puts "To start over, type 'start'"
     puts "Or type 'exit' to end the program."
+    puts ""
     last_input = gets.strip
     case last_input
     when "A"
@@ -59,8 +66,7 @@ class UtEvents::CLI
     when "C"
       UtEvents::Event.find_by_category("Campus & Community")
     when "start"
-      UtEvents::Event.all.clear
-      start
+      display_menu
     when 'exit'
       puts "Goodbye y'all!"
     end
