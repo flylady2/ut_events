@@ -1,16 +1,12 @@
 # UtEvents
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ut_events`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to UT Events!  This is a CLI-based ruby gem that presents information from the events calendar at the University of Texas at Austin.  The user sees a numbered list of events that are happening that day and can obtain additional information such as the event's location, a brief description, type of event or sponsoring institutions, and the url for the individual calendar webpage  for the event.  The user can also ask to see a more detailed description of any event, and to see a list of events corresponding to a particular category or sponsoring institution.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-```ruby
 gem 'ut_events'
-```
 
 And then execute:
 
@@ -22,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+require 'ut_events'
 
 ## Development
 
