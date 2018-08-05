@@ -21,16 +21,6 @@ class UtEvents::Event
   def self.find_by_category(category) #iterates through the Event.all array to select events in the desired category
     UtEvents::Event.all.select {|object|
       object.affiliations.include?(category)}
-  end
-
-
-
-    #def self.destroy_all
-    #  @@all.clear
-    #end
-
-
-
-
+  end #returns a new array of the selected events
 
 end
