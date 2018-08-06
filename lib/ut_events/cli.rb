@@ -26,8 +26,7 @@ class UtEvents::CLI
     user_input = gets.strip
     if user_input == 'exit'
       early_exit
-    end
-    if user_input.to_i.between?(1, UtEvents::Event.all.size)
+    elsif user_input.to_i.between?(1, UtEvents::Event.all.size)
       index = user_input.to_i - 1
       chosen_event(index)
     else
@@ -38,18 +37,17 @@ class UtEvents::CLI
 
   def chosen_event(index)
     #identifies event within Event.all array and shows its attributes
-    chosen_event = UtEvents::Event.all[index]
-    puts "Name: #{chosen_event.name}"
-    puts "Location: #{chosen_event.location}"
-    puts "Brief description: #{chosen_event.description}"
-    puts "Affilations: #{chosen_event.affiliations.join(', ')}"
-    puts "url: #{chosen_event.event_link}"
+    puts "Name: #{UtEvents::Event.all[index].name}"
+    puts "Location: #{UtEvents::Event.all[index].location}"
+    puts "Brief description: #{UtEvents::Event.all[index].description}"
+    puts "Affilations: #{UtEvents::Event.all[index].affiliations.join(', ')}"
+    puts "url: #{UtEvents::Event.all[index].event_link}"
     puts ""
     puts "Would you like to see a more detailed description of this event? (Y/n)"
     next_input = gets.strip.downcase
     if next_input == "y"
       #scrapes page of chosen_event and displays longer description
-      puts UtEvents::Scraper.single_event_scrape(chosen_event)
+      puts UtEvents::Scraper.single_event_scrape(UtEvents::Event.all[index])
       category_menu
     else
       category_menu
