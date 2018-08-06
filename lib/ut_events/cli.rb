@@ -27,31 +27,32 @@ class UtEvents::CLI
     if user_input == 'exit'
       early_exit
     end
-    index = user_input.to_i - 1
-    if index < 0
+    if user_input.to_i.between?(1, UtEvents::Event.all.size)
+      index = user_input.to_i - 1
+      chosen_event(index)
+    else
       puts "Please try again"
-      puts "To view additional details about a particular event, type in its number from the list."
-      index = gets.strip.to_i
-        if index.between?(0, UtEvents::Event.all.size - 1)
-
-    #identifies event within Event.all array and shows its attributes
-      chosen_event = UtEvents::Event.all[index]
-      puts "Name: #{chosen_event.name}"
-      puts "Location: #{chosen_event.location}"
-      puts "Brief description: #{chosen_event.description}"
-      puts "Affilations: #{chosen_event.affiliations.join(', ')}"
-      puts "url: #{chosen_event.event_link}"
-      puts ""
+      main_menu
     end
-      puts "Would you like to see a more detailed description of this event? (Y/n)"
-      next_input = gets.strip.downcase
-      if next_input == "y"
-        #scrapes page of chosen_event and displays longer description
-        puts UtEvents::Scraper.single_event_scrape(chosen_event)
-        category_menu
-      else
-        category_menu
-      end
+  end
+
+  def chosen_event(index)
+    #identifies event within Event.all array and shows its attributes
+    chosen_event = UtEvents::Event.all[index]
+    puts "Name: #{chosen_event.name}"
+    puts "Location: #{chosen_event.location}"
+    puts "Brief description: #{chosen_event.description}"
+    puts "Affilations: #{chosen_event.affiliations.join(', ')}"
+    puts "url: #{chosen_event.event_link}"
+    puts ""
+    puts "Would you like to see a more detailed description of this event? (Y/n)"
+    next_input = gets.strip.downcase
+    if next_input == "y"
+      #scrapes page of chosen_event and displays longer description
+      puts UtEvents::Scraper.single_event_scrape(chosen_event)
+      category_menu
+    else
+      category_menu
     end
   end
 
