@@ -28,7 +28,12 @@ class UtEvents::CLI
       early_exit
     end
     index = user_input.to_i - 1
-    if index.between?(0, UtEvents::Event.all.size - 1)
+    if index < 0
+      puts "Please try again"
+      puts "To view additional details about a particular event, type in its number from the list."
+      index = gets.strip.to_i
+        if index.between?(0, UtEvents::Event.all.size - 1)
+
     #identifies event within Event.all array and shows its attributes
       chosen_event = UtEvents::Event.all[index]
       puts "Name: #{chosen_event.name}"
@@ -37,6 +42,7 @@ class UtEvents::CLI
       puts "Affilations: #{chosen_event.affiliations.join(', ')}"
       puts "url: #{chosen_event.event_link}"
       puts ""
+    end
       puts "Would you like to see a more detailed description of this event? (Y/n)"
       next_input = gets.strip.downcase
       if next_input == "y"
