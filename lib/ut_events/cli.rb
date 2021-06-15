@@ -69,6 +69,7 @@ class UtEvents::CLI
     puts "Or type 'done' to end the program."
     puts ""
     last_input = gets.strip.downcase
+    
     case last_input
     when "a"
       UtEvents::Event.find_by_category("Research Opportunities & Studies").each do |event| #iterates through the new array to print out the event names

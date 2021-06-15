@@ -6,6 +6,7 @@ class UtEvents::Scraper
   def self.scrape_events #scraping the UT calendar events website
     html = open(BASE_URL)
     doc = Nokogiri::HTML(html)
+    
     item_content = doc.css(".item_content_medium")
     daily_events = []
     item_content.each do |item| #iterating through each event to obtain individual attributes
