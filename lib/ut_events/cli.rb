@@ -21,6 +21,7 @@ class UtEvents::CLI
 
   def main_menu
     puts "To view additional details about a particular event, type in its number from the list."
+    puts "Type the letter C to see a list of event categories."
     puts "Or type 'exit' to quit the program."
     user_input = ""
     user_input = gets.strip
@@ -29,6 +30,8 @@ class UtEvents::CLI
     elsif user_input.to_i.between?(1, UtEvents::Event.all.size)
       index = user_input.to_i - 1
       chosen_event(index)
+    elsif user_input == "C" || user_input == "c"
+      category_menu
     else
       puts "Please try again"
       main_menu
@@ -61,15 +64,24 @@ class UtEvents::CLI
   def category_menu
     puts ""
     puts "Would you like to see a list of events belonging to one of these categories?"
-    puts "A. Research Opportunities & Studies"
-    puts "B. Health & Wellness"
-    puts "C. Campus & Community"
-    puts "If so, enter the letter corresponding to the category."
+    puts "Ac.  Academics"
+    puts "Ar.  Arts & Humanities"
+    puts "B.   Business & Economy"
+    puts "C.   Campus & Community"
+    puts "D.   Diversity"
+    puts "H.   Health & Wellness"
+    puts "P.   Policy & Law"
+    puts "R.   Research Opportunities & Studies"
+    puts "Sci. Science & Tech"
+    puts "Soc. Social Justicer"
+    puts "Spo. Sports & Recreation"
+    puts "W.   World & Culture"
+    puts "If so, enter the letter(s) corresponding to the category."
     puts "To see all the events again, type 'again'"
     puts "Or type 'done' to end the program."
     puts ""
     last_input = gets.strip.downcase
-    
+
     case last_input
     when "a"
       UtEvents::Event.find_by_category("Research Opportunities & Studies").each do |event| #iterates through the new array to print out the event names
