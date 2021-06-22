@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Leslie Stevens'"]
   spec.email         = ["'flylady@mail.utexas.edu'"]
 
-  spec.summary       = %q{TODO: Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = "A scraper gem"
+  spec.description   =  "A gem that scrapes the events calendar of the University of Texas at Austin and allows the user to search for specific events"
+  spec.homepage      = "https://github.com/flylady2/ut_events"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -32,6 +32,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.16"
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "bundler", "~> 2.2.20"
+  spec.add_development_dependency "rake", "~> 12.3.3"
 end
