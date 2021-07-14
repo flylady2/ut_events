@@ -42,6 +42,7 @@ class UtEvents::CLI
     #identifies event within Event.all array and shows its attributes
     puts "Name: #{UtEvents::Event.all[index].name}"
     puts "Location: #{UtEvents::Event.all[index].location}"
+    puts "Date and Time: #{UtEvents::Event.all[index].datetime}"
     puts "Brief description: #{UtEvents::Event.all[index].description}"
     puts "Affilations: #{UtEvents::Event.all[index].affiliations.join(', ')}"
     puts "url: #{UtEvents::Event.all[index].event_link}"
@@ -100,7 +101,8 @@ class UtEvents::CLI
         #puts "#{event.name}"
         display_event(event)
       end
-      second_look()
+      second_look
+
     when "d"
       UtEvents::Event.find_by_category("Diversity").each do |event|
         puts "#{event.name}"
@@ -143,6 +145,7 @@ class UtEvents::CLI
     when 'done'
       puts "Goodbye y'all!"
     end
+
   end
 
   def display_event(event)
@@ -157,12 +160,12 @@ class UtEvents::CLI
   def second_look
     puts "Do you want to see all the events again?"
     puts "Type y for yes, n to exit the program"
-    user_input = ""
-    user_input = gets.strip
-    if user_input == 'n' || user_input == 'N'
-      puts "Goodbye y'all!"
+    third_input = ""
+    third_input = gets.strip.downcase
+    if third_input == 'y'
+      display_menu
     else
-      main_menu
+      puts "Goodbye y'all!"
     end
   end
 
